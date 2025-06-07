@@ -1,0 +1,126 @@
+spec-version: 0.36.0 # Avoid legacy behaviour of Hpack
+
+name: baseplate
+version: 0.0.16.1
+synopsis: Foundation scrap box of array & string
+description: |
+  Foundation most basic primitives without any dependencies
+copyright:
+- 2015-2017 Vincent Hanquez <vincent@snarc.org>
+- 2017-2018 Foundation Maintainers
+maintainer: public@pilgrem.com
+category: Web
+github: mpilgrem/baseplate
+extra-source-files:
+- cbits/*.h
+extra-doc-files:
+- CHANGELOG.md 
+- README.md
+
+library:
+  source-dirs: .
+  exposed-modules:
+  - Basement.Imports
+
+  - Basement.Base16
+  - Basement.Bindings.Memory
+  - Basement.Endianness
+  - Basement.Environment
+  - Basement.PrimType
+
+  - Basement.Exception
+  - Basement.Cast
+  - Basement.From
+
+  - Basement.Types.Char7
+  - Basement.Types.CharUTF8
+  - Basement.Types.OffsetSize
+  - Basement.Types.Ptr
+  - Basement.Types.AsciiString
+  - Basement.Types.Word128
+  - Basement.Types.Word256
+  - Basement.Monad
+  - Basement.MutableBuilder
+  - Basement.FinalPtr
+
+  - Basement.Nat
+
+  # Extended Types
+  - Basement.BoxedArray
+  - Basement.Block
+  - Basement.Block.Mutable
+  - Basement.Block.Builder
+  - Basement.UArray
+  - Basement.UArray.Mutable
+  - Basement.String
+  - Basement.String.Builder
+  - Basement.NonEmpty
+
+  # Extended Types with explicit type level size
+  - Basement.Sized.Block
+  - Basement.Sized.UVect
+  - Basement.Sized.Vect
+  - Basement.Sized.List
+  - Basement.BlockN
+
+  # Utils
+  - Basement.NormalForm
+  - Basement.These
+
+  # Terminal
+  - Basement.Terminal
+  - Basement.Terminal.ANSI
+
+  # numeric stuff
+  - Basement.IntegralConv
+  - Basement.Floating
+  - Basement.Numerical.Number
+  - Basement.Numerical.Additive
+  - Basement.Numerical.Subtractive
+  - Basement.Numerical.Multiplicative
+  - Basement.Bounded
+
+  # exported algorithms
+  - Basement.Alg.XorShift
+
+  # compat / base redefinition
+  - Basement.Compat.AMP
+  - Basement.Compat.Base
+  - Basement.Compat.Bifunctor
+  - Basement.Compat.CallStack
+  - Basement.Compat.C.Types
+  - Basement.Compat.ExtList
+  - Basement.Compat.IsList
+  - Basement.Compat.Identity
+  - Basement.Compat.Primitive
+  - Basement.Compat.PrimTypes
+  - Basement.Compat.MonadTrans
+  - Basement.Compat.Semigroup
+  - Basement.Compat.Natural
+  - Basement.Compat.NumLiteral
+  - Basement.Compat.Typeable
+
+  - Basement.Bits
+
+  when:
+  - condition: impl(ghc < 8.10)
+    buildable: False
+  - condition: os(windows)
+    dependencies:
+    - Win32
+  - condition: arch(i386) || arch(x86_64)
+    then:
+      cpp-options: -DARCH_IS_LITTLE_ENDIAN
+    else:
+      cpp-options: -DARCH_IS_UNKNOWN_ENDIAN
+  dependencies:
+  - base
+  - ghc-prim
+  default-extensions:
+  - NoImplicitPrelude
+  - RebindableSyntax
+  - TypeFamilies
+  - BangPatterns
+  - DeriveDataTypeable
+  include-dirs: cbits
+  c-sources: cbits/foundation_mem.c
