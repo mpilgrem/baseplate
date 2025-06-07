@@ -116,7 +116,7 @@ library
       Basement.UTF8.Table
       Basement.UTF8.Types
   hs-source-dirs:
-      ./
+      src
   default-extensions:
       NoImplicitPrelude
       RebindableSyntax

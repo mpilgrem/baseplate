@@ -18,7 +18,7 @@ extra-doc-files:
 - README.md
 
 library:
-  source-dirs: .
+  source-dirs: src
   exposed-modules:
   - Basement.Imports
 
