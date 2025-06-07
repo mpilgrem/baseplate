@@ -13,6 +13,7 @@ homepage:            https://github.com/haskell-foundation/foundation#readme
 bug-reports:         https://github.com/haskell-foundation/foundation/issues
 cabal-version:       1.18
 extra-source-files:  cbits/*.h
+extra-doc-files:     CHANGELOG.md README.md
 
 source-repository head
   type: git
