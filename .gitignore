@@ -1,0 +1,7 @@
+# Cabal-related
+dist-newstyle/
+
+# The Haskell Stack-related
+.stack-work
+stack.yaml.lock
+stack-ghc-*.yaml.lock
